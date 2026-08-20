@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="PesaTrack - Simple and powerful business financial management."
+    >
+
+    <title>PesaTrack | Business Finance</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                P
+            </div>
+
+            <div>
+                <h2>PesaTrack</h2>
+                <span>Business Finance</span>
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="navigation">
+
+            <!-- Dashboard -->
+
+            <a
+                href="#"
+                class="nav-item active"
+                data-page="dashboard"
+            >
+
+                <span class="nav-icon" aria-hidden="true">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <rect
+                            x="3"
+                            y="3"
+                            width="7"
+                            height="7"
+                            rx="1.5"
+                        />
+
+                        <rect
+                            x="14"
+                            y="3"
+                            width="7"
+                            height="7"
+                            rx="1.5"
+                        />
+
+                        <rect
+                            x="3"
+                            y="14"
+                            width="7"
+                            height="7"
+                            rx="1.5"
+                        />
+
+                        <rect
+                            x="14"
+                            y="14"
+                            width="7"
+                            height="7"
+                            rx="1.5"
+                        />
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <!-- Transactions -->
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="transactions"
+            >
+
+                <span class="nav-icon" aria-hidden="true">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <rect
+                            x="3"
+                            y="5"
+                            width="18"
+                            height="14"
+                            rx="2.5"
+                        />
+
+                        <path d="M3 10h18" />
+
+                        <path d="M7 15h3" />
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Transactions
+                </span>
+
+            </a>
+
+
+            <!-- Products -->
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="products"
+            >
+
+                <span class="nav-icon" aria-hidden="true">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" />
+
+                        <path d="M4 12.5 12 17l8-4.5" />
+
+                        <path d="M4 17 12 21l8-4" />
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Products
+                </span>
+
+            </a>
+
+
+            <!-- Stock -->
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="stock"
+            >
+
+                <span class="nav-icon" aria-hidden="true">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <path d="M4 6h16" />
+
+                        <path d="M4 12h16" />
+
+                        <path d="M4 18h16" />
+
+                        <circle
+                            cx="8"
+                            cy="6"
+                            r="1.5"
+                        />
+
+                        <circle
+                            cx="15"
+                            cy="12"
+                            r="1.5"
+                        />
+
+                        <circle
+                            cx="10"
+                            cy="18"
+                            r="1.5"
+                        />
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Stock
+                </span>
+
+            </a>
+
+
+            <!-- Reports -->
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="reports"
+            >
+
+                <span class="nav-icon" aria-hidden="true">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <path d="M4 19V10" />
+
+                        <path d="M10 19V5" />
+
+                        <path d="M16 19v-7" />
+
+                        <path d="M22 19V8" />
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Reports
+                </span>
+
+            </a>
+
+
+            <!-- Calculator -->
+
+            <a
+                href="#"
+                class="nav-item"
+                data-page="calculator"
+            >
+
+                <span class="nav-icon" aria-hidden="true">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <rect
+                            x="5"
+                            y="2.5"
+                            width="14"
+                            height="19"
+                            rx="2"
+                        />
+
+                        <path d="M8 6.5h8" />
+
+                        <path d="M8 11h2" />
+
+                        <path d="M14 11h2" />
+
+                        <path d="M8 15h2" />
+
+                        <path d="M14 15h2" />
+
+                        <path d="M8 18.5h2" />
+
+                        <path d="M14 18.5h2" />
+                    </svg>
+
+                </span>
+
+                <span class="nav-label">
+                    Calculator
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="theme-btn"
+                id="themeToggle"
+                type="button"
+            >
+
+                <span aria-hidden="true">
+                    ◐
+                </span>
+
+                <span>
+                    Dark Mode
+                </span>
+
+            </button>
+
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+                type="button"
+            >
+
+                <span aria-hidden="true">
+                    ↪
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- =========================
+             TOPBAR
+        ========================== -->
+
+        <header class="topbar">
+
+            <div class="mobile-menu" id="mobileMenu">
+                ☰
+            </div>
+
+
+            <div class="topbar-title">
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+                <p id="pageSubtitle">
+                    Welcome back. Here's your business overview.
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <!-- Notification -->
+
+                <button
+                    class="notification-btn"
+                    type="button"
+                    aria-label="Notifications"
+                >
+
+                    <span aria-hidden="true">
+                        ♢
+                    </span>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <!-- Profile -->
+
+                <div class="profile">
+
+                    <div
+                        class="avatar"
+                        id="userAvatar"
+                    >
+                        U
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong id="userName">
+                            User
+                        </strong>
+
+                        <span>
+                            Business Owner
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             DASHBOARD
+        ========================== -->
+
+        <section
+            id="dashboardPage"
+            class="page active"
+        >
+
+
+            <!-- Business Selector -->
+
+            <div class="business-bar">
+
+                <div>
+
+                    <span class="label">
+                        Current Business
+                    </span>
+
+                    <select id="businessSelect">
+
+                        <option value="">
+                            Select Business
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    id="refreshDashboard"
+                    type="button"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <!-- Statistics -->
+
+            <div class="stats-grid">
+
+
+                <!-- Sales -->
+
+                <div class="stat-card sales">
+
+                    <div class="stat-icon">
+                        ↑
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Total Sales
+                        </span>
+
+                        <h2 id="totalSales">
+                            TZS 0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Expenses -->
+
+                <div class="stat-card expenses">
+
+                    <div class="stat-icon">
+                        ↓
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Total Expenses
+                        </span>
+
+                        <h2 id="totalExpenses">
+                            TZS 0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Profit -->
+
+                <div class="stat-card profit">
+
+                    <div class="stat-icon">
+                        %
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Profit
+                        </span>
+
+                        <h2 id="totalProfit">
+                            TZS 0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Stock -->
+
+                <div class="stat-card stock">
+
+                    <div class="stat-icon">
+                        #
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>
+                            Stock Value
+                        </span>
+
+                        <h2 id="stockValue">
+                            TZS 0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Dashboard Panels -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- Recent Transactions -->
+
+                <div class="panel transactions-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Recent Transactions
+                            </h3>
+
+                            <p>
+                                Your latest business activity
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="text-btn"
+                            type="button"
+                            data-page="transactions"
+                        >
+                            View All →
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Transaction</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="recentTransactions">
+
+                                <tr>
+
+                                    <td
+                                        colspan="4"
+                                        class="empty-state"
+                                    >
+                                        No transactions yet
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Low Stock -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Low Stock
+                            </h3>
+
+                            <p>
+                                Products that need attention
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="text-btn"
+                            type="button"
+                            data-page="stock"
+                        >
+                            View All →
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="lowStockList"
+                        class="stock-list"
+                    >
+
+                        <div class="empty-state">
+                            No low-stock products
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick Actions -->
+
+            <div class="panel quick-actions-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Quick Actions
+                        </h3>
+
+                        <p>
+                            Manage your business quickly
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+
+                    <button
+                        class="quick-action"
+                        type="button"
+                        data-page="transactions"
+                    >
+
+                        <span>
+                            +
+                        </span>
+
+                        <strong>
+                            Add Transaction
+                        </strong>
+
+                        <small>
+                            Record income or expense
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        type="button"
+                        data-page="products"
+                    >
+
+                        <span>
+                            +
+                        </span>
+
+                        <strong>
+                            Add Product
+                        </strong>
+
+                        <small>
+                            Add new inventory
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        type="button"
+                        data-page="stock"
+                    >
+
+                        <span>
+                            ↔
+                        </span>
+
+                        <strong>
+                            Stock Movement
+                        </strong>
+
+                        <small>
+                            Stock in or stock out
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        type="button"
+                        data-page="reports"
+                    >
+
+                        <span>
+                            ≋
+                        </span>
+
+                        <strong>
+                            Business Report
+                        </strong>
+
+                        <small>
+                            View financial report
+                        </small>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TRANSACTIONS
+        ========================== -->
+
+        <section
+            id="transactionsPage"
+            class="page"
+        >
+
+            <div class="page-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Transactions
+                        </h2>
+
+                        <p>
+                            Manage your business income and expenses.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        type="button"
+                    >
+                        + Add Transaction
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Payment</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="transactionsTable">
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="empty-state"
+                                >
+                                    No transactions found
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PRODUCTS
+        ========================== -->
+
+        <section
+            id="productsPage"
+            class="page"
+        >
+
+            <div class="page-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Products
+                        </h2>
+
+                        <p>
+                            Manage your products and inventory.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        type="button"
+                    >
+                        + Add Product
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Quantity</th>
+                                <th>Buying Price</th>
+                                <th>Selling Price</th>
+                                <th>Stock Value</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="productsTable">
+
+                            <tr>
+
+                                <td
+                                    colspan="6"
+                                    class="empty-state"
+                                >
+                                    No products found
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STOCK
+        ========================== -->
+
+        <section
+            id="stockPage"
+            class="page"
+        >
+
+            <div class="page-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Stock Management
+                        </h2>
+
+                        <p>
+                            Track stock coming in and going out.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        type="button"
+                    >
+                        + Stock Movement
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Product</th>
+                                <th>Movement</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="stockTable">
+
+                            <tr>
+
+                                <td
+                                    colspan="4"
+                                    class="empty-state"
+                                >
+                                    No stock movements found
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             REPORTS
+        ========================== -->
+
+        <section
+            id="reportsPage"
+            class="page"
+        >
+
+            <div class="page-card">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Business Reports
+                        </h2>
+
+                        <p>
+                            Understand how your business is performing.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        id="generateReport"
+                        type="button"
+                    >
+                        Generate Report
+                    </button>
+
+                </div>
+
+
+                <div class="report-summary">
+
+
+                    <div class="report-card">
+
+                        <span>
+                            Total Income
+                        </span>
+
+                        <strong id="reportIncome">
+                            TZS 0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <span>
+                            Total Expenses
+                        </span>
+
+                        <strong id="reportExpenses">
+                            TZS 0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <span>
+                            Profit
+                        </span>
+
+                        <strong id="reportProfit">
+                            TZS 0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <span>
+                            Transactions
+                        </span>
+
+                        <strong id="reportTransactions">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CALCULATOR
+        ========================== -->
+
+        <section
+            id="calculatorPage"
+            class="page"
+        >
+
+            <div class="calculator">
+
+                <div class="calculator-header">
+
+                    <h2>
+                        Business Calculator
+                    </h2>
+
+                    <p>
+                        Calculate prices, profit and business figures.
+                    </p>
+
+                </div>
+
+
+                <input
+                    type="text"
+                    id="calculatorDisplay"
+                    class="calculator-display"
+                    value="0"
+                    readonly
+                    aria-label="Calculator display"
+                >
+
+
+                <div class="calculator-buttons">
+
+                    <button type="button" data-value="C">
+                        C
+                    </button>
+
+                    <button type="button" data-value="÷">
+                        ÷
+                    </button>
+
+                    <button type="button" data-value="×">
+                        ×
+                    </button>
+
+                    <button type="button" data-value="⌫">
+                        ⌫
+                    </button>
+
+
+                    <button type="button" data-value="7">
+                        7
+                    </button>
+
+                    <button type="button" data-value="8">
+                        8
+                    </button>
+
+                    <button type="button" data-value="9">
+                        9
+                    </button>
+
+                    <button type="button" data-value="-">
+                        −
+                    </button>
+
+
+                    <button type="button" data-value="4">
+                        4
+                    </button>
+
+                    <button type="button" data-value="5">
+                        5
+                    </button>
+
+                    <button type="button" data-value="6">
+                        6
+                    </button>
+
+                    <button type="button" data-value="+">
+                        +
+                    </button>
+
+
+                    <button type="button" data-value="1">
+                        1
+                    </button>
+
+                    <button type="button" data-value="2">
+                        2
+                    </button>
+
+                    <button type="button" data-value="3">
+                        3
+                    </button>
+
+                    <button
+                        type="button"
+                        data-value="="
+                        class="equals"
+                    >
+                        =
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-value="0"
+                        class="zero"
+                    >
+                        0
+                    </button>
+
+                    <button type="button" data-value=".">
+                        .
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================== -->
+
+<div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+></div>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
