@@ -1,0 +1,22 @@
+# Backup files
+*.backup
+*.auth-backup
+*.before-auth-test
+
+# Archives
+*.zip
+
+# Environment variables
+.env
+
+# Go files
+*.exe
+
+# IDE files
+.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store

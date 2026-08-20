@@ -2,29 +2,978 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
-        content="PesaTrack - Simple and powerful business financial management."
+        content="PesaTrack - Professional business finance management."
     >
 
     <title>PesaTrack | Business Finance</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
 
 <body>
 
-<div class="app">
+<!-- =====================================================
+     AUTH / PUBLIC AREA
+====================================================== -->
+
+<div
+    id="authScreen"
+    class="auth-screen"
+>
+
 
     <!-- =========================
-         SIDEBAR
+         LANDING PAGE
     ========================== -->
 
-    <aside class="sidebar" id="sidebar">
+    <div
+        id="landingView"
+        class="landing-view"
+    >
 
-        <!-- LOGO -->
+        <header class="landing-nav">
+
+            <a
+                href="#"
+                class="brand"
+                id="landingBrand"
+            >
+
+                <div class="brand-icon">
+                    P
+                </div>
+
+                <div class="brand-copy">
+
+                    <strong>
+                        PesaTrack
+                    </strong>
+
+                    <span>
+                        Business Finance
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <nav class="landing-links">
+
+                <a href="#landingFeatures">
+                    Features
+                </a>
+
+                <a href="#landingHow">
+                    How It Works
+                </a>
+
+                <a href="#landingWhy">
+                    Why PesaTrack
+                </a>
+
+            </nav>
+
+
+            <div class="landing-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-ghost"
+                    id="landingLogin"
+                >
+                    Login
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="landingRegister"
+                >
+                    Create Account
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    BUSINESS FINANCE MANAGEMENT
+                </div>
+
+                <h1>
+                    Run your business
+                    <span>with clarity.</span>
+                </h1>
+
+                <p>
+                    PesaTrack brings your transactions,
+                    products, stock and business performance
+                    into one simple workspace.
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-primary btn-large"
+                        id="landingGetStarted"
+                    >
+                        Get Started
+                        <span>→</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline btn-large"
+                        id="landingExplore"
+                    >
+                        Explore Features
+                    </button>
+
+                </div>
+
+
+                <div class="hero-points">
+
+                    <span>
+                        ✓ Simple
+                    </span>
+
+                    <span>
+                        ✓ Business focused
+                    </span>
+
+                    <span>
+                        ✓ Built to grow
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREVIEW -->
+
+            <div class="hero-preview">
+
+                <div class="dashboard-preview">
+
+                    <div class="preview-header">
+
+                        <div>
+
+                            <small>
+                                Business Overview
+                            </small>
+
+                            <strong>
+                                Dashboard
+                            </strong>
+
+                        </div>
+
+                        <div class="preview-avatar">
+                            P
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-stats">
+
+                        <div class="preview-stat">
+
+                            <small>
+                                Total Sales
+                            </small>
+
+                            <strong>
+                                TZS 4.8M
+                            </strong>
+
+                            <span class="positive">
+                                ↑ 18.4%
+                            </span>
+
+                        </div>
+
+
+                        <div class="preview-stat">
+
+                            <small>
+                                Expenses
+                            </small>
+
+                            <strong>
+                                TZS 1.9M
+                            </strong>
+
+                            <span class="negative">
+                                ↑ 4.2%
+                            </span>
+
+                        </div>
+
+
+                        <div class="preview-stat">
+
+                            <small>
+                                Profit
+                            </small>
+
+                            <strong>
+                                TZS 2.9M
+                            </strong>
+
+                            <span class="positive">
+                                ↑ 22.7%
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-chart">
+
+                        <div class="preview-chart-header">
+
+                            <strong>
+                                Business Performance
+                            </strong>
+
+                            <span>
+                                This Month
+                            </span>
+
+                        </div>
+
+
+                        <div class="preview-bars">
+
+                            <i style="height:35%"></i>
+                            <i style="height:48%"></i>
+                            <i style="height:43%"></i>
+                            <i style="height:62%"></i>
+                            <i style="height:56%"></i>
+                            <i style="height:75%"></i>
+                            <i style="height:88%"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+
+        <section
+            id="landingFeatures"
+            class="landing-section"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    POWERFUL TOOLS
+                </span>
+
+                <h2>
+                    Everything you need
+                    to manage your business.
+                </h2>
+
+                <p>
+                    Keep your core business operations
+                    organised from one place.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        ₮
+                    </div>
+
+                    <h3>
+                        Transactions
+                    </h3>
+
+                    <p>
+                        Record income and expenses
+                        and keep financial activity
+                        organised.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        ◈
+                    </div>
+
+                    <h3>
+                        Products
+                    </h3>
+
+                    <p>
+                        Manage products, prices and
+                        inventory in one workspace.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        ⇅
+                    </div>
+
+                    <h3>
+                        Stock
+                    </h3>
+
+                    <p>
+                        Track stock movement and know
+                        what needs attention.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        %
+                    </div>
+
+                    <h3>
+                        Reports
+                    </h3>
+
+                    <p>
+                        Understand income, expenses
+                        and business performance.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOW IT WORKS -->
+
+        <section
+            id="landingHow"
+            class="landing-section section-muted"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    HOW IT WORKS
+                </span>
+
+                <h2>
+                    Start in three simple steps.
+                </h2>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Create your account
+                    </h3>
+
+                    <p>
+                        Sign up and securely access
+                        your PesaTrack workspace.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Add your business
+                    </h3>
+
+                    <p>
+                        Create your business and start
+                        organising its operations.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Track and grow
+                    </h3>
+
+                    <p>
+                        Monitor transactions, products,
+                        stock and performance.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- WHY -->
+
+        <section
+            id="landingWhy"
+            class="landing-section why-section"
+        >
+
+            <div class="why-copy">
+
+                <span>
+                    WHY PESATRACK
+                </span>
+
+                <h2>
+                    Your business numbers
+                    should work for you.
+                </h2>
+
+                <p>
+                    PesaTrack brings your important
+                    business activity together so you
+                    can spend less time searching for
+                    information and more time running
+                    your business.
+                </p>
+
+
+                <div class="check-list">
+
+                    <div>
+                        ✓ One place for your business data
+                    </div>
+
+                    <div>
+                        ✓ Clear financial visibility
+                    </div>
+
+                    <div>
+                        ✓ Simple inventory management
+                    </div>
+
+                    <div>
+                        ✓ Business performance reporting
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="mini-metric">
+
+                    <small>
+                        Monthly Profit
+                    </small>
+
+                    <strong>
+                        TZS 2,940,000
+                    </strong>
+
+                    <span>
+                        ↑ 22.7%
+                    </span>
+
+                </div>
+
+
+                <div class="mini-metric">
+
+                    <small>
+                        Inventory Items
+                    </small>
+
+                    <strong>
+                        248
+                    </strong>
+
+                    <span>
+                        12 need attention
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="landing-cta">
+
+            <span>
+                READY TO GET STARTED?
+            </span>
+
+            <h2>
+                Take control of
+                your business finances.
+            </h2>
+
+            <p>
+                Start using PesaTrack today.
+            </p>
+
+            <button
+                type="button"
+                class="btn btn-primary btn-large"
+                id="landingBottomRegister"
+            >
+                Create Free Account
+                <span>→</span>
+            </button>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="landing-footer">
+
+            <div class="footer-brand">
+
+                <div class="brand-icon">
+                    P
+                </div>
+
+                <div>
+
+                    <strong>
+                        PesaTrack
+                    </strong>
+
+                    <span>
+                        Business Finance Management
+                    </span>
+
+                </div>
+
+            </div>
+
+            <p>
+                © 2026 PesaTrack. All rights reserved.
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <!-- =========================
+         LOGIN
+    ========================== -->
+
+    <div
+        id="loginView"
+        class="auth-view"
+        hidden
+    >
+
+        <div class="auth-card">
+
+            <button
+                type="button"
+                class="auth-back"
+                id="loginBack"
+            >
+                ← Back
+            </button>
+
+
+            <div class="auth-logo-large">
+                P
+            </div>
+
+
+            <div class="auth-heading">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Sign in to your PesaTrack account.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                    id="loginSubmit"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+
+            <button
+                type="button"
+                class="auth-link"
+                id="forgotPassword"
+            >
+                Forgot password?
+            </button>
+
+
+            <p class="auth-switch">
+
+                Don't have an account?
+
+                <button
+                    type="button"
+                    id="loginRegister"
+                >
+                    Create account
+                </button>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         REGISTER
+    ========================== -->
+
+    <div
+        id="registerView"
+        class="auth-view"
+        hidden
+    >
+
+        <div class="auth-card">
+
+            <button
+                type="button"
+                class="auth-back"
+                id="registerBack"
+            >
+                ← Back
+            </button>
+
+
+            <div class="auth-logo-large">
+                P
+            </div>
+
+
+            <div class="auth-heading">
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Start managing your business with PesaTrack.
+                </p>
+
+            </div>
+
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label for="registerFullName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerFullName"
+                        placeholder="Your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="registerPhone"
+                        placeholder="0712345678"
+                        autocomplete="tel"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Minimum 6 characters"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerPasswordConfirm">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registerPasswordConfirm"
+                        placeholder="Repeat your password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                    id="registerSubmit"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p class="auth-switch">
+
+                Already have an account?
+
+                <button
+                    type="button"
+                    id="registerLogin"
+                >
+                    Sign in
+                </button>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FORGOT PASSWORD
+    ========================== -->
+
+    <div
+        id="forgotView"
+        class="auth-view"
+        hidden
+    >
+
+        <div class="auth-card">
+
+            <button
+                type="button"
+                class="auth-back"
+                id="forgotBack"
+            >
+                ← Back to Login
+            </button>
+
+
+            <div class="auth-logo-large">
+                P
+            </div>
+
+
+            <div class="auth-heading">
+
+                <h2>
+                    Forgot password?
+                </h2>
+
+                <p>
+                    Password recovery is not yet
+                    available in the current backend.
+                </p>
+
+            </div>
+
+
+            <div class="coming-soon">
+
+                <strong>
+                    Coming soon
+                </strong>
+
+                <p>
+                    We will connect password recovery
+                    after the backend reset-password
+                    endpoint is implemented.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     AUTHENTICATED APPLICATION
+====================================================== -->
+
+<div
+    class="app"
+    id="app"
+    hidden
+>
+
+
+    <!-- SIDEBAR -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
 
         <div class="logo">
 
@@ -33,280 +982,95 @@
             </div>
 
             <div>
-                <h2>PesaTrack</h2>
-                <span>Business Finance</span>
+
+                <h2>
+                    PesaTrack
+                </h2>
+
+                <span>
+                    Business Finance
+                </span>
+
             </div>
 
         </div>
 
 
-        <!-- NAVIGATION -->
-
         <nav class="navigation">
-
-            <!-- Dashboard -->
 
             <a
                 href="#"
                 class="nav-item active"
                 data-page="dashboard"
             >
-
-                <span class="nav-icon" aria-hidden="true">
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                    >
-                        <rect
-                            x="3"
-                            y="3"
-                            width="7"
-                            height="7"
-                            rx="1.5"
-                        />
-
-                        <rect
-                            x="14"
-                            y="3"
-                            width="7"
-                            height="7"
-                            rx="1.5"
-                        />
-
-                        <rect
-                            x="3"
-                            y="14"
-                            width="7"
-                            height="7"
-                            rx="1.5"
-                        />
-
-                        <rect
-                            x="14"
-                            y="14"
-                            width="7"
-                            height="7"
-                            rx="1.5"
-                        />
-                    </svg>
-
-                </span>
-
+                <span class="nav-icon">▦</span>
                 <span class="nav-label">
                     Dashboard
                 </span>
-
             </a>
 
-
-            <!-- Transactions -->
 
             <a
                 href="#"
                 class="nav-item"
                 data-page="transactions"
             >
-
-                <span class="nav-icon" aria-hidden="true">
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                    >
-                        <rect
-                            x="3"
-                            y="5"
-                            width="18"
-                            height="14"
-                            rx="2.5"
-                        />
-
-                        <path d="M3 10h18" />
-
-                        <path d="M7 15h3" />
-                    </svg>
-
-                </span>
-
+                <span class="nav-icon">↔</span>
                 <span class="nav-label">
                     Transactions
                 </span>
-
             </a>
 
-
-            <!-- Products -->
 
             <a
                 href="#"
                 class="nav-item"
                 data-page="products"
             >
-
-                <span class="nav-icon" aria-hidden="true">
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                    >
-                        <path d="M4 7.5 12 3l8 4.5-8 4.5-8-4.5Z" />
-
-                        <path d="M4 12.5 12 17l8-4.5" />
-
-                        <path d="M4 17 12 21l8-4" />
-                    </svg>
-
-                </span>
-
+                <span class="nav-icon">◈</span>
                 <span class="nav-label">
                     Products
                 </span>
-
             </a>
 
-
-            <!-- Stock -->
 
             <a
                 href="#"
                 class="nav-item"
                 data-page="stock"
             >
-
-                <span class="nav-icon" aria-hidden="true">
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                    >
-                        <path d="M4 6h16" />
-
-                        <path d="M4 12h16" />
-
-                        <path d="M4 18h16" />
-
-                        <circle
-                            cx="8"
-                            cy="6"
-                            r="1.5"
-                        />
-
-                        <circle
-                            cx="15"
-                            cy="12"
-                            r="1.5"
-                        />
-
-                        <circle
-                            cx="10"
-                            cy="18"
-                            r="1.5"
-                        />
-                    </svg>
-
-                </span>
-
+                <span class="nav-icon">⇅</span>
                 <span class="nav-label">
                     Stock
                 </span>
-
             </a>
 
-
-            <!-- Reports -->
 
             <a
                 href="#"
                 class="nav-item"
                 data-page="reports"
             >
-
-                <span class="nav-icon" aria-hidden="true">
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                    >
-                        <path d="M4 19V10" />
-
-                        <path d="M10 19V5" />
-
-                        <path d="M16 19v-7" />
-
-                        <path d="M22 19V8" />
-                    </svg>
-
-                </span>
-
+                <span class="nav-icon">▥</span>
                 <span class="nav-label">
                     Reports
                 </span>
-
             </a>
 
-
-            <!-- Calculator -->
 
             <a
                 href="#"
                 class="nav-item"
                 data-page="calculator"
             >
-
-                <span class="nav-icon" aria-hidden="true">
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                    >
-                        <rect
-                            x="5"
-                            y="2.5"
-                            width="14"
-                            height="19"
-                            rx="2"
-                        />
-
-                        <path d="M8 6.5h8" />
-
-                        <path d="M8 11h2" />
-
-                        <path d="M14 11h2" />
-
-                        <path d="M8 15h2" />
-
-                        <path d="M14 15h2" />
-
-                        <path d="M8 18.5h2" />
-
-                        <path d="M14 18.5h2" />
-                    </svg>
-
-                </span>
-
+                <span class="nav-icon">▣</span>
                 <span class="nav-label">
                     Calculator
                 </span>
-
             </a>
 
         </nav>
 
-
-        <!-- SIDEBAR BOTTOM -->
 
         <div class="sidebar-bottom">
 
@@ -315,15 +1079,10 @@
                 id="themeToggle"
                 type="button"
             >
-
-                <span aria-hidden="true">
-                    ◐
-                </span>
-
+                <span>◐</span>
                 <span>
                     Dark Mode
                 </span>
-
             </button>
 
 
@@ -332,15 +1091,10 @@
                 id="logoutBtn"
                 type="button"
             >
-
-                <span aria-hidden="true">
-                    ↪
-                </span>
-
+                <span>↪</span>
                 <span>
                     Logout
                 </span>
-
             </button>
 
         </div>
@@ -348,22 +1102,20 @@
     </aside>
 
 
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
+    <!-- MAIN -->
 
     <main class="main-content">
 
-
-        <!-- =========================
-             TOPBAR
-        ========================== -->
-
         <header class="topbar">
 
-            <div class="mobile-menu" id="mobileMenu">
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+                type="button"
+                aria-label="Open menu"
+            >
                 ☰
-            </div>
+            </button>
 
 
             <div class="topbar-title">
@@ -380,26 +1132,6 @@
 
 
             <div class="topbar-right">
-
-
-                <!-- Notification -->
-
-                <button
-                    class="notification-btn"
-                    type="button"
-                    aria-label="Notifications"
-                >
-
-                    <span aria-hidden="true">
-                        ♢
-                    </span>
-
-                    <span class="notification-dot"></span>
-
-                </button>
-
-
-                <!-- Profile -->
 
                 <div class="profile">
 
@@ -429,17 +1161,12 @@
         </header>
 
 
-        <!-- =========================
-             DASHBOARD
-        ========================== -->
+        <!-- DASHBOARD -->
 
         <section
             id="dashboardPage"
             class="page active"
         >
-
-
-            <!-- Business Selector -->
 
             <div class="business-bar">
 
@@ -450,11 +1177,9 @@
                     </span>
 
                     <select id="businessSelect">
-
                         <option value="">
                             Select Business
                         </option>
-
                     </select>
 
                 </div>
@@ -471,12 +1196,7 @@
             </div>
 
 
-            <!-- Statistics -->
-
             <div class="stats-grid">
-
-
-                <!-- Sales -->
 
                 <div class="stat-card sales">
 
@@ -499,8 +1219,6 @@
                 </div>
 
 
-                <!-- Expenses -->
-
                 <div class="stat-card expenses">
 
                     <div class="stat-icon">
@@ -522,8 +1240,6 @@
                 </div>
 
 
-                <!-- Profit -->
-
                 <div class="stat-card profit">
 
                     <div class="stat-icon">
@@ -544,8 +1260,6 @@
 
                 </div>
 
-
-                <!-- Stock -->
 
                 <div class="stat-card stock">
 
@@ -570,12 +1284,7 @@
             </div>
 
 
-            <!-- Dashboard Panels -->
-
             <div class="dashboard-grid">
-
-
-                <!-- Recent Transactions -->
 
                 <div class="panel transactions-panel">
 
@@ -624,14 +1333,12 @@
                             <tbody id="recentTransactions">
 
                                 <tr>
-
                                     <td
                                         colspan="4"
                                         class="empty-state"
                                     >
                                         No transactions yet
                                     </td>
-
                                 </tr>
 
                             </tbody>
@@ -642,8 +1349,6 @@
 
                 </div>
 
-
-                <!-- Low Stock -->
 
                 <div class="panel">
 
@@ -689,8 +1394,6 @@
             </div>
 
 
-            <!-- Quick Actions -->
-
             <div class="panel quick-actions-panel">
 
                 <div class="panel-header">
@@ -712,25 +1415,18 @@
 
                 <div class="quick-actions">
 
-
                     <button
                         class="quick-action"
                         type="button"
                         data-page="transactions"
                     >
-
-                        <span>
-                            +
-                        </span>
-
+                        <span>+</span>
                         <strong>
                             Add Transaction
                         </strong>
-
                         <small>
                             Record income or expense
                         </small>
-
                     </button>
 
 
@@ -739,19 +1435,13 @@
                         type="button"
                         data-page="products"
                     >
-
-                        <span>
-                            +
-                        </span>
-
+                        <span>+</span>
                         <strong>
                             Add Product
                         </strong>
-
                         <small>
                             Add new inventory
                         </small>
-
                     </button>
 
 
@@ -760,19 +1450,13 @@
                         type="button"
                         data-page="stock"
                     >
-
-                        <span>
-                            ↔
-                        </span>
-
+                        <span>↔</span>
                         <strong>
                             Stock Movement
                         </strong>
-
                         <small>
                             Stock in or stock out
                         </small>
-
                     </button>
 
 
@@ -781,19 +1465,13 @@
                         type="button"
                         data-page="reports"
                     >
-
-                        <span>
-                            ≋
-                        </span>
-
+                        <span>≋</span>
                         <strong>
                             Business Report
                         </strong>
-
                         <small>
                             View financial report
                         </small>
-
                     </button>
 
                 </div>
@@ -803,9 +1481,7 @@
         </section>
 
 
-        <!-- =========================
-             TRANSACTIONS
-        ========================== -->
+        <!-- TRANSACTIONS -->
 
         <section
             id="transactionsPage"
@@ -828,9 +1504,9 @@
 
                     </div>
 
-
                     <button
                         class="primary-btn"
+                        id="addTransactionBtn"
                         type="button"
                     >
                         + Add Transaction
@@ -860,14 +1536,12 @@
                         <tbody id="transactionsTable">
 
                             <tr>
-
                                 <td
                                     colspan="6"
                                     class="empty-state"
                                 >
                                     No transactions found
                                 </td>
-
                             </tr>
 
                         </tbody>
@@ -881,9 +1555,7 @@
         </section>
 
 
-        <!-- =========================
-             PRODUCTS
-        ========================== -->
+        <!-- PRODUCTS -->
 
         <section
             id="productsPage"
@@ -906,9 +1578,9 @@
 
                     </div>
 
-
                     <button
                         class="primary-btn"
+                        id="addProductBtn"
                         type="button"
                     >
                         + Add Product
@@ -938,14 +1610,12 @@
                         <tbody id="productsTable">
 
                             <tr>
-
                                 <td
                                     colspan="6"
                                     class="empty-state"
                                 >
                                     No products found
                                 </td>
-
                             </tr>
 
                         </tbody>
@@ -959,9 +1629,7 @@
         </section>
 
 
-        <!-- =========================
-             STOCK
-        ========================== -->
+        <!-- STOCK -->
 
         <section
             id="stockPage"
@@ -984,9 +1652,9 @@
 
                     </div>
 
-
                     <button
                         class="primary-btn"
+                        id="addStockBtn"
                         type="button"
                     >
                         + Stock Movement
@@ -1014,14 +1682,12 @@
                         <tbody id="stockTable">
 
                             <tr>
-
                                 <td
                                     colspan="4"
                                     class="empty-state"
                                 >
                                     No stock movements found
                                 </td>
-
                             </tr>
 
                         </tbody>
@@ -1035,9 +1701,7 @@
         </section>
 
 
-        <!-- =========================
-             REPORTS
-        ========================== -->
+        <!-- REPORTS -->
 
         <section
             id="reportsPage"
@@ -1066,14 +1730,13 @@
                         id="generateReport"
                         type="button"
                     >
-                        Generate Report
+                        Refresh Report
                     </button>
 
                 </div>
 
 
                 <div class="report-summary">
-
 
                     <div class="report-card">
 
@@ -1133,9 +1796,7 @@
         </section>
 
 
-        <!-- =========================
-             CALCULATOR
-        ========================== -->
+        <!-- CALCULATOR -->
 
         <section
             id="calculatorPage"
@@ -1163,25 +1824,36 @@
                     class="calculator-display"
                     value="0"
                     readonly
-                    aria-label="Calculator display"
                 >
 
 
                 <div class="calculator-buttons">
 
-                    <button type="button" data-value="C">
+                    <button
+                        type="button"
+                        data-value="C"
+                    >
                         C
                     </button>
 
-                    <button type="button" data-value="÷">
+                    <button
+                        type="button"
+                        data-value="÷"
+                    >
                         ÷
                     </button>
 
-                    <button type="button" data-value="×">
+                    <button
+                        type="button"
+                        data-value="×"
+                    >
                         ×
                     </button>
 
-                    <button type="button" data-value="⌫">
+                    <button
+                        type="button"
+                        data-value="⌫"
+                    >
                         ⌫
                     </button>
 
@@ -1234,8 +1906,8 @@
 
                     <button
                         type="button"
-                        data-value="="
                         class="equals"
+                        data-value="="
                     >
                         =
                     </button>
@@ -1243,13 +1915,16 @@
 
                     <button
                         type="button"
-                        data-value="0"
                         class="zero"
+                        data-value="0"
                     >
                         0
                     </button>
 
-                    <button type="button" data-value=".">
+                    <button
+                        type="button"
+                        data-value="."
+                    >
                         .
                     </button>
 
@@ -1264,9 +1939,7 @@
 </div>
 
 
-<!-- =========================
-     TOAST
-========================== -->
+<!-- TOAST -->
 
 <div
     id="toast"
@@ -1275,8 +1948,6 @@
     aria-live="polite"
 ></div>
 
-
-<!-- JAVASCRIPT -->
 
 <script src="js/app.js"></script>
 

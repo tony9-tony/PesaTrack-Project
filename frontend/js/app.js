@@ -4,18 +4,59 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const API_BASE_URL =
+        window.API_BASE_URL ||
+        "http://localhost:8080";
+
+
     /* =================================================
        ELEMENTS
-       ================================================= */
+    ================================================= */
+
+    const authScreen =
+        document.getElementById("authScreen");
+
+    const landingView =
+        document.getElementById("landingView");
+
+    const loginView =
+        document.getElementById("loginView");
+
+    const registerView =
+        document.getElementById("registerView");
+
+    const forgotView =
+        document.getElementById("forgotView");
+
+    const app =
+        document.getElementById("app");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const loginSubmit =
+        document.getElementById("loginSubmit");
+
+    const registerSubmit =
+        document.getElementById("registerSubmit");
 
     const businessSelect =
         document.getElementById("businessSelect");
 
-    const themeToggle =
-        document.getElementById("themeToggle");
+    const refreshDashboard =
+        document.getElementById("refreshDashboard");
+
+    const generateReport =
+        document.getElementById("generateReport");
 
     const logoutBtn =
         document.getElementById("logoutBtn");
+
+    const themeToggle =
+        document.getElementById("themeToggle");
 
     const mobileMenu =
         document.getElementById("mobileMenu");
@@ -26,21 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const toast =
         document.getElementById("toast");
 
-    const calculatorDisplay =
-        document.getElementById("calculatorDisplay");
-
-    const refreshDashboard =
-        document.getElementById("refreshDashboard");
-
-    const generateReport =
-        document.getElementById("generateReport");
-
     const pageTitle =
         document.getElementById("pageTitle");
 
     const pageSubtitle =
         document.getElementById("pageSubtitle");
 
+    const calculatorDisplay =
+        document.getElementById("calculatorDisplay");
 
     const pages =
         document.querySelectorAll(".page");
@@ -60,16 +94,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =================================================
-       API CONFIGURATION
-       ================================================= */
+       STORAGE
+    ================================================= */
 
-const API_BASE_URL =
-    window.API_BASE_URL ||
-    "http://localhost:8080";
+    function getToken() {
+
+        return localStorage.getItem(
+            "pesatrack-token"
+        );
+    }
+
+
+    function getStoredUser() {
+
+        const stored =
+            localStorage.getItem(
+                "pesatrack-user"
+            );
+
+        if (!stored) {
+            return null;
+        }
+
+        try {
+
+            return JSON.parse(stored);
+
+        } catch {
+
+            localStorage.removeItem(
+                "pesatrack-user"
+            );
+
+            return null;
+        }
+    }
+
+
+    function clearSession() {
+
+        localStorage.removeItem(
+            "pesatrack-token"
+        );
+
+        localStorage.removeItem(
+            "pesatrack-user"
+        );
+
+        localStorage.removeItem(
+            "pesatrack-business"
+        );
+    }
+
 
     /* =================================================
        TOAST
-       ================================================= */
+    ================================================= */
 
     function showToast(
         message,
@@ -81,7 +161,10 @@ const API_BASE_URL =
             return;
         }
 
-        toast.textContent = message;
+
+        toast.textContent =
+            message;
+
 
         toast.classList.remove(
             "show",
@@ -90,42 +173,831 @@ const API_BASE_URL =
             "warning"
         );
 
-        toast.classList.add(type);
 
-        requestAnimationFrame(() => {
-            toast.classList.add("show");
-        });
+        toast.classList.add(
+            type
+        );
+
+
+        requestAnimationFrame(
+            () => {
+
+                toast.classList.add(
+                    "show"
+                );
+
+            }
+        );
+
 
         clearTimeout(
             window.pesaTrackToastTimer
         );
 
+
         window.pesaTrackToastTimer =
-            setTimeout(() => {
+            setTimeout(
+                () => {
 
-                toast.classList.remove(
-                    "show"
-                );
+                    toast.classList.remove(
+                        "show"
+                    );
 
-            }, 3000);
+                },
+                3000
+            );
     }
 
 
-    window.showToast = showToast;
+    window.showToast =
+        showToast;
 
 
     /* =================================================
-       BUSINESS STATE
-       ================================================= */
+       AUTH VIEW
+    ================================================= */
+
+    function hideAuthViews() {
+
+        [
+            landingView,
+            loginView,
+            registerView,
+            forgotView
+        ]
+        .forEach(
+            view => {
+
+                if (view) {
+                    view.hidden = true;
+                }
+
+            }
+        );
+    }
+
+
+    function showLanding() {
+
+        hideAuthViews();
+
+        if (landingView) {
+            landingView.hidden =
+                false;
+        }
+
+        if (authScreen) {
+            authScreen.hidden =
+                false;
+        }
+
+        if (app) {
+            app.hidden = true;
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+    }
+
+
+    function showLogin() {
+
+        hideAuthViews();
+
+        if (loginView) {
+            loginView.hidden =
+                false;
+        }
+
+        if (authScreen) {
+            authScreen.hidden =
+                false;
+        }
+
+        if (app) {
+            app.hidden = true;
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+    }
+
+
+    function showRegister() {
+
+        hideAuthViews();
+
+        if (registerView) {
+            registerView.hidden =
+                false;
+        }
+
+        if (authScreen) {
+            authScreen.hidden =
+                false;
+        }
+
+        if (app) {
+            app.hidden = true;
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+    }
+
+
+    function showForgotPassword() {
+
+        hideAuthViews();
+
+        if (forgotView) {
+            forgotView.hidden =
+                false;
+        }
+
+        if (authScreen) {
+            authScreen.hidden =
+                false;
+        }
+
+        if (app) {
+            app.hidden = true;
+        }
+    }
+
+
+    function showApp() {
+
+        hideAuthViews();
+
+        if (authScreen) {
+            authScreen.hidden =
+                true;
+        }
+
+        if (app) {
+            app.hidden =
+                false;
+        }
+
+        updateUserProfile(
+            getStoredUser()
+        );
+    }
+
+
+    /* =================================================
+       USER PROFILE
+    ================================================= */
+
+    function updateUserProfile(user) {
+
+        if (!user) {
+            return;
+        }
+
+
+        const userName =
+            document.getElementById(
+                "userName"
+            );
+
+        const userAvatar =
+            document.getElementById(
+                "userAvatar"
+            );
+
+
+        const name =
+            user.full_name ||
+            user.name ||
+            "User";
+
+
+        if (userName) {
+            userName.textContent =
+                name;
+        }
+
+
+        if (userAvatar) {
+
+            const initials =
+                name
+                    .trim()
+                    .split(/\s+/)
+                    .slice(0, 2)
+                    .map(
+                        part =>
+                            part
+                                .charAt(0)
+                                .toUpperCase()
+                    )
+                    .join("");
+
+
+            userAvatar.textContent =
+                initials || "U";
+        }
+    }
+
+
+    /* =================================================
+       AUTH BUTTONS
+    ================================================= */
+
+    document
+        .getElementById("landingLogin")
+        ?.addEventListener(
+            "click",
+            showLogin
+        );
+
+
+    document
+        .getElementById("landingRegister")
+        ?.addEventListener(
+            "click",
+            showRegister
+        );
+
+
+    document
+        .getElementById("landingGetStarted")
+        ?.addEventListener(
+            "click",
+            showRegister
+        );
+
+
+    document
+        .getElementById("landingBottomRegister")
+        ?.addEventListener(
+            "click",
+            showRegister
+        );
+
+
+    document
+        .getElementById("loginBack")
+        ?.addEventListener(
+            "click",
+            showLanding
+        );
+
+
+    document
+        .getElementById("registerBack")
+        ?.addEventListener(
+            "click",
+            showLanding
+        );
+
+
+    document
+        .getElementById("loginRegister")
+        ?.addEventListener(
+            "click",
+            showRegister
+        );
+
+
+    document
+        .getElementById("registerLogin")
+        ?.addEventListener(
+            "click",
+            showLogin
+        );
+
+
+    document
+        .getElementById("forgotPassword")
+        ?.addEventListener(
+            "click",
+            showForgotPassword
+        );
+
+
+    document
+        .getElementById("forgotBack")
+        ?.addEventListener(
+            "click",
+            showLogin
+        );
+
+
+    document
+        .getElementById("landingExplore")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .getElementById(
+                        "landingFeatures"
+                    )
+                    ?.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            }
+        );
+
+
+    document
+        .getElementById("landingBrand")
+        ?.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                showLanding();
+
+            }
+        );
+
+
+    /* =================================================
+       LOGIN
+    ================================================= */
+
+    if (loginForm) {
+
+        loginForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "loginEmail"
+                        )
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById(
+                            "loginPassword"
+                        )
+                        .value;
+
+
+                if (!email ||
+                    !password
+                ) {
+
+                    showToast(
+                        "Enter your email and password.",
+                        "warning"
+                    );
+
+                    return;
+                }
+
+
+                loginSubmit.disabled =
+                    true;
+
+                loginSubmit.textContent =
+                    "Signing in...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `${API_BASE_URL}/api/auth/login`,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json",
+                                    "Accept":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+                                        email,
+                                        password
+                                    })
+                            }
+                        );
+
+
+                    const data =
+                        await response
+                            .json()
+                            .catch(
+                                () => ({})
+                            );
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.error ||
+                            "Invalid email or password."
+                        );
+                    }
+
+
+                    if (!data.token) {
+
+                        throw new Error(
+                            "The server did not return an authentication token."
+                        );
+                    }
+
+
+                    localStorage.setItem(
+                        "pesatrack-token",
+                        data.token
+                    );
+
+
+                    if (data.user) {
+
+                        localStorage.setItem(
+                            "pesatrack-user",
+                            JSON.stringify(
+                                data.user
+                            )
+                        );
+                    }
+
+
+                    showApp();
+
+
+                    showToast(
+                        "Login successful.",
+                        "success"
+                    );
+
+
+                    await fetchBusinesses();
+
+                    await refreshBusinessData();
+
+
+                    loginForm.reset();
+
+                } catch (error) {
+
+                    console.error(
+                        "Login error:",
+                        error
+                    );
+
+
+                    showToast(
+                        error.message ||
+                        "Unable to login.",
+                        "error"
+                    );
+
+                } finally {
+
+                    loginSubmit.disabled =
+                        false;
+
+                    loginSubmit.textContent =
+                        "Sign In";
+                }
+            }
+        );
+    }
+
+
+    /* =================================================
+       REGISTER
+    ================================================= */
+
+    if (registerForm) {
+
+        registerForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+                const fullName =
+                    document
+                        .getElementById(
+                            "registerFullName"
+                        )
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "registerEmail"
+                        )
+                        .value
+                        .trim();
+
+
+                const phoneNumber =
+                    document
+                        .getElementById(
+                            "registerPhone"
+                        )
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById(
+                            "registerPassword"
+                        )
+                        .value;
+
+
+                const confirmPassword =
+                    document
+                        .getElementById(
+                            "registerPasswordConfirm"
+                        )
+                        .value;
+
+
+                if (
+                    !fullName ||
+                    !email ||
+                    !password
+                ) {
+
+                    showToast(
+                        "Please complete all required fields.",
+                        "warning"
+                    );
+
+                    return;
+                }
+
+
+                if (password.length < 6) {
+
+                    showToast(
+                        "Password must contain at least 6 characters.",
+                        "warning"
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    password !==
+                    confirmPassword
+                ) {
+
+                    showToast(
+                        "Passwords do not match.",
+                        "warning"
+                    );
+
+                    return;
+                }
+
+
+                registerSubmit.disabled =
+                    true;
+
+                registerSubmit.textContent =
+                    "Creating Account...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            `${API_BASE_URL}/api/auth/register`,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json",
+                                    "Accept":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+                                        full_name:
+                                            fullName,
+
+                                        email:
+                                            email,
+
+                                        phone_number:
+                                            phoneNumber,
+
+                                        password:
+                                            password
+                                    })
+                            }
+                        );
+
+
+                    const data =
+                        await response
+                            .json()
+                            .catch(
+                                () => ({})
+                            );
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.error ||
+                            "Unable to create account."
+                        );
+                    }
+
+
+                    registerForm.reset();
+
+
+                    document
+                        .getElementById(
+                            "loginEmail"
+                        )
+                        .value =
+                            email;
+
+
+                    showToast(
+                        "Account created successfully. Please sign in.",
+                        "success"
+                    );
+
+
+                    showLogin();
+
+                } catch (error) {
+
+                    console.error(
+                        "Registration error:",
+                        error
+                    );
+
+
+                    showToast(
+                        error.message ||
+                        "Unable to create account.",
+                        "error"
+                    );
+
+                } finally {
+
+                    registerSubmit.disabled =
+                        false;
+
+                    registerSubmit.textContent =
+                        "Create Account";
+                }
+            }
+        );
+    }
+
+
+    /* =================================================
+       API HELPER
+    ================================================= */
+
+    async function apiRequest(
+        path,
+        options = {}
+    ) {
+
+        const token =
+            getToken();
+
+
+        const headers = {
+            "Accept":
+                "application/json",
+            ...(options.headers || {})
+        };
+
+
+        if (
+            options.body &&
+            !headers["Content-Type"]
+        ) {
+
+            headers["Content-Type"] =
+                "application/json";
+        }
+
+
+        if (token) {
+
+            headers["Authorization"] =
+                `Bearer ${token}`;
+        }
+
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}${path}`,
+                {
+                    ...options,
+                    headers
+                }
+            );
+
+
+        if (response.status === 401) {
+
+            clearSession();
+
+            showLanding();
+
+            throw new Error(
+                "Your session has expired. Please log in again."
+            );
+        }
+
+
+        const data =
+            await response
+                .json()
+                .catch(
+                    () => ({})
+                );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                data.message ||
+                `Request failed: ${response.status}`
+            );
+        }
+
+
+        return data;
+    }
+
+
+    /* =================================================
+       BUSINESS
+    ================================================= */
 
     let businesses = [];
 
-    let selectedBusiness = null;
+    let selectedBusiness =
+        null;
 
 
-    /* =================================================
-       BUSINESS API
-       ================================================= */
+    function businessIdOf(
+        business
+    ) {
+
+        return String(
+            business.id ??
+            business.business_id ??
+            business.businessId ??
+            ""
+        );
+    }
+
+
+    function businessNameOf(
+        business
+    ) {
+
+        return (
+            business.business_name ??
+            business.businessName ??
+            business.name ??
+            "Business"
+        );
+    }
+
 
     async function fetchBusinesses() {
 
@@ -133,103 +1005,48 @@ const API_BASE_URL =
             return;
         }
 
-        businessSelect.disabled = true;
 
-        businessSelect.innerHTML = `
+        businessSelect.disabled =
+            true;
+
+
+        businessSelect.innerHTML =
+            `
             <option value="">
                 Loading businesses...
             </option>
-        `;
+            `;
 
 
         try {
 
-const response =
-    await fetch(
-        `${API_BASE_URL}/api/businesses`,
-        {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Authorization":
-                    `Bearer ${localStorage.getItem("pesatrack-token") || ""}`
-            }
-        }
-    );
-
-
-            if (response.status === 401) {
-
-                businesses = [];
-
-                renderBusinessSelector();
-
-                return;
-            }
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    `Business request failed: ${response.status}`
-                );
-            }
-
-
             const data =
-                await response.json();
+                await apiRequest(
+                    "/api/businesses"
+                );
 
 
-            /*
-             * Support common backend response formats:
-             *
-             * [
-             *   {...}
-             * ]
-             *
-             * or
-             *
-             * {
-             *   businesses: [...]
-             * }
-             *
-             * or
-             *
-             * {
-             *   data: [...]
-             * }
-             */
-
-            if (Array.isArray(data)) {
-
-                businesses = data;
-
-            } else if (
-                Array.isArray(data.businesses)
-            ) {
-
-                businesses =
-                    data.businesses;
-
-            } else if (
-                Array.isArray(data.data)
-            ) {
-
-                businesses =
-                    data.data;
-
-            } else {
-
-                businesses = [];
-            }
+            businesses =
+                Array.isArray(data)
+                    ? data
+                    : Array.isArray(
+                        data.businesses
+                    )
+                        ? data.businesses
+                        : Array.isArray(
+                            data.data
+                        )
+                            ? data.data
+                            : [];
 
 
             renderBusinessSelector();
 
+
         } catch (error) {
 
             console.error(
-                "Failed to load businesses:",
+                "Business load error:",
                 error
             );
 
@@ -239,13 +1056,16 @@ const response =
             renderBusinessSelector(
                 "Unable to load businesses"
             );
+
+
+            showToast(
+                error.message ||
+                "Unable to load businesses.",
+                "error"
+            );
         }
     }
 
-
-    /* =================================================
-       RENDER BUSINESS SELECTOR
-       ================================================= */
 
     function renderBusinessSelector(
         errorMessage = null
@@ -256,24 +1076,27 @@ const response =
         }
 
 
-        businessSelect.innerHTML = "";
+        businessSelect.innerHTML =
+            "";
 
 
         if (errorMessage) {
 
             const option =
-                document.createElement("option");
+                new Option(
+                    errorMessage,
+                    ""
+                );
 
-            option.value = "";
-
-            option.textContent =
-                errorMessage;
 
             businessSelect.appendChild(
                 option
             );
 
-            businessSelect.disabled = false;
+
+            businessSelect.disabled =
+                false;
+
 
             return;
         }
@@ -281,160 +1104,135 @@ const response =
 
         if (!businesses.length) {
 
-            const option =
-                document.createElement("option");
-
-            option.value = "";
-
-            option.textContent =
-                "No business found";
-
             businessSelect.appendChild(
-                option
+                new Option(
+                    "No business found",
+                    ""
+                )
             );
 
 
-            /*
-             * Create-business option.
-             * This does not create fake data.
-             */
-
-            const createOption =
-                document.createElement("option");
-
-            createOption.value =
-                "__create_business__";
-
-            createOption.textContent =
-                "+ Create New Business";
-
             businessSelect.appendChild(
-                createOption
+                new Option(
+                    "+ Create New Business",
+                    "__create_business__"
+                )
             );
 
 
-            businessSelect.disabled = false;
+            businessSelect.disabled =
+                false;
+
 
             return;
         }
 
 
-        const defaultOption =
-            document.createElement("option");
-
-        defaultOption.value = "";
-
-        defaultOption.textContent =
-            "Select Business";
-
         businessSelect.appendChild(
-            defaultOption
+            new Option(
+                "Select Business",
+                ""
+            )
         );
 
 
-        businesses.forEach(business => {
+        businesses.forEach(
+            business => {
 
-            const id =
-                business.id ??
-                business.businessId;
-
-            const name =
-                business.name ??
-                business.businessName ??
-                business.business_name;
+                const id =
+                    businessIdOf(
+                        business
+                    );
 
 
-            if (
-                id === undefined ||
-                id === null ||
-                !name
-            ) {
-                return;
+                const name =
+                    businessNameOf(
+                        business
+                    );
+
+
+                if (!id) {
+                    return;
+                }
+
+
+                businessSelect.appendChild(
+                    new Option(
+                        name,
+                        id
+                    )
+                );
             }
+        );
 
 
-            const option =
-                document.createElement("option");
-
-            option.value = String(id);
-
-            option.textContent = name;
-
-            businessSelect.appendChild(
-                option
-            );
-        });
-
-
-        const savedBusiness =
+        const saved =
             localStorage.getItem(
                 "pesatrack-business"
             );
 
 
-        if (savedBusiness) {
+        if (saved) {
 
             const exists =
                 businesses.some(
                     business =>
-                        String(
-                            business.id ??
-                            business.businessId
-                        ) === savedBusiness
+                        businessIdOf(
+                            business
+                        ) === saved
                 );
 
 
             if (exists) {
 
                 businessSelect.value =
-                    savedBusiness;
+                    saved;
+
 
                 selectedBusiness =
                     businesses.find(
                         business =>
-                            String(
-                                business.id ??
-                                business.businessId
-                            ) === savedBusiness
+                            businessIdOf(
+                                business
+                            ) === saved
                     );
             }
         }
 
 
-        businessSelect.disabled = false;
+        businessSelect.disabled =
+            false;
     }
 
-
-    /* =================================================
-       BUSINESS SELECTION
-       ================================================= */
 
     if (businessSelect) {
 
         businessSelect.addEventListener(
             "change",
-            () => {
+            async () => {
 
-                const businessId =
+                const id =
                     businessSelect.value;
 
 
                 if (
-                    businessId ===
+                    id ===
                     "__create_business__"
                 ) {
 
-                    businessSelect.value = "";
+                    businessSelect.value =
+                        "";
 
-                    createBusiness();
+                    await createBusiness();
 
                     return;
                 }
 
 
-                if (!businessId) {
+                if (!id) {
 
-                    selectedBusiness = null;
+                    selectedBusiness =
+                        null;
 
                     localStorage.removeItem(
                         "pesatrack-business"
@@ -447,10 +1245,9 @@ const response =
                 selectedBusiness =
                     businesses.find(
                         business =>
-                            String(
-                                business.id ??
-                                business.businessId
-                            ) === businessId
+                            businessIdOf(
+                                business
+                            ) === id
                     );
 
 
@@ -461,95 +1258,57 @@ const response =
 
                 localStorage.setItem(
                     "pesatrack-business",
-                    businessId
+                    id
                 );
 
 
-                const name =
-                    selectedBusiness.name ??
-                    selectedBusiness.businessName ??
-                    "Business";
-
-
                 showToast(
-                    `${name} selected.`,
+                    `${businessNameOf(selectedBusiness)} selected.`,
                     "success"
                 );
 
 
-                console.log(
-                    "Selected business:",
-                    selectedBusiness
-                );
-
-
-                refreshBusinessData();
+                await refreshBusinessData();
             }
         );
     }
 
 
-    /* =================================================
-       CREATE BUSINESS
-       ================================================= */
-
     async function createBusiness() {
 
-        const businessName =
+        const name =
             window.prompt(
                 "Enter your business name:"
             );
 
 
-        if (!businessName) {
-            return;
-        }
+        if (!name ||
+            !name.trim()
+        ) {
 
-
-        const name =
-            businessName.trim();
-
-
-        if (!name) {
             return;
         }
 
 
         try {
 
-            const response =
-                await fetch(
-                    `${API_BASE_URL}/api/businesses`,
+            /*
+             * The backend model uses business_name.
+             */
+
+            const created =
+                await apiRequest(
+                    "/api/businesses",
                     {
                         method: "POST",
-                        credentials: "include",
-                        headers: {
-                            "Content-Type":
-                                "application/json",
-                            "Accept":
-                                "application/json"
-                        },
-                        body: JSON.stringify({
-                            name
-                        })
+
+                        body:
+                            JSON.stringify({
+                                business_name:
+                                    name.trim()
+                            })
                     }
                 );
-
-
-            if (!response.ok) {
-
-                const message =
-                    await response.text();
-
-                throw new Error(
-                    message ||
-                    `Create business failed: ${response.status}`
-                );
-            }
-
-
-            const createdBusiness =
-                await response.json();
 
 
             showToast(
@@ -562,17 +1321,24 @@ const response =
 
 
             const createdId =
-                createdBusiness.id ??
-                createdBusiness.businessId;
+                businessIdOf(
+                    created
+                );
 
 
-            if (createdId !== undefined) {
+            if (
+                createdId &&
+                businessSelect
+            ) {
 
                 businessSelect.value =
-                    String(createdId);
+                    createdId;
+
 
                 businessSelect.dispatchEvent(
-                    new Event("change")
+                    new Event(
+                        "change"
+                    )
                 );
             }
 
@@ -585,6 +1351,7 @@ const response =
 
 
             showToast(
+                error.message ||
                 "Unable to create business.",
                 "error"
             );
@@ -593,30 +1360,1009 @@ const response =
 
 
     /* =================================================
-       REFRESH BUSINESS DATA
-       ================================================= */
+       BUSINESS QUERY
+    ================================================= */
 
-    async function refreshBusinessData() {
+    function businessQuery() {
+
+        if (!selectedBusiness) {
+            return "";
+        }
+
+
+        const id =
+            businessIdOf(
+                selectedBusiness
+            );
+
+
+        return id
+            ? `?business_id=${encodeURIComponent(id)}`
+            : "";
+    }
+
+
+    /* =================================================
+       DASHBOARD
+    ================================================= */
+
+    function findValue(
+        data,
+        keys,
+        fallback = 0
+    ) {
+
+        if (!data ||
+            typeof data !== "object"
+        ) {
+
+            return fallback;
+        }
+
+
+        for (
+            const key of keys
+        ) {
+
+            if (
+                data[key] !==
+                undefined &&
+                data[key] !== null
+            ) {
+
+                return data[key];
+            }
+        }
+
+
+        return fallback;
+    }
+
+
+    function money(
+        value
+    ) {
+
+        const number =
+            Number(value) || 0;
+
+
+        return new Intl.NumberFormat(
+            "en-TZ",
+            {
+                style: "currency",
+                currency: "TZS",
+                maximumFractionDigits: 0
+            }
+        ).format(number);
+    }
+
+
+    function extractArray(
+        data,
+        keys
+    ) {
+
+        if (Array.isArray(data)) {
+            return data;
+        }
+
+
+        if (
+            data &&
+            typeof data ===
+                "object"
+        ) {
+
+            for (
+                const key of keys
+            ) {
+
+                if (
+                    Array.isArray(
+                        data[key]
+                    )
+                ) {
+
+                    return data[key];
+                }
+            }
+        }
+
+
+        return [];
+    }
+
+
+    async function loadDashboard() {
 
         if (!selectedBusiness) {
             return;
         }
 
-        console.log(
-            "Refreshing business:",
-            selectedBusiness
-        );
 
-        /*
-         * Backend dashboard integration
-         * can be connected here.
-         */
+        try {
+
+            const data =
+                await apiRequest(
+                    `/api/dashboard${businessQuery()}`
+                );
+
+
+            const totalSales =
+                findValue(
+                    data,
+                    [
+                        "total_sales",
+                        "total_income",
+                        "sales",
+                        "income"
+                    ]
+                );
+
+
+            const totalExpenses =
+                findValue(
+                    data,
+                    [
+                        "total_expenses",
+                        "expenses"
+                    ]
+                );
+
+
+            const totalProfit =
+                findValue(
+                    data,
+                    [
+                        "profit",
+                        "total_profit",
+                        "net_profit"
+                    ]
+                );
+
+
+            const stockValue =
+                findValue(
+                    data,
+                    [
+                        "stock_value",
+                        "total_stock_value",
+                        "inventory_value"
+                    ]
+                );
+
+
+            document.getElementById(
+                "totalSales"
+            ).textContent =
+                money(totalSales);
+
+
+            document.getElementById(
+                "totalExpenses"
+            ).textContent =
+                money(totalExpenses);
+
+
+            document.getElementById(
+                "totalProfit"
+            ).textContent =
+                money(totalProfit);
+
+
+            document.getElementById(
+                "stockValue"
+            ).textContent =
+                money(stockValue);
+
+
+        } catch (error) {
+
+            console.error(
+                "Dashboard error:",
+                error
+            );
+
+
+            showToast(
+                error.message ||
+                "Unable to load dashboard.",
+                "error"
+            );
+        }
+    }
+
+
+    /* =================================================
+       TRANSACTIONS
+    ================================================= */
+
+    async function loadTransactions() {
+
+        const table =
+            document.getElementById(
+                "transactionsTable"
+            );
+
+
+        const recent =
+            document.getElementById(
+                "recentTransactions"
+            );
+
+
+        if (!selectedBusiness) {
+
+            setEmpty(
+                table,
+                6,
+                "Select a business to view transactions."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const data =
+                await apiRequest(
+                    `/api/transactions${businessQuery()}`
+                );
+
+
+            const transactions =
+                extractArray(
+                    data,
+                    [
+                        "transactions",
+                        "data"
+                    ]
+                );
+
+
+            renderTransactions(
+                table,
+                transactions
+            );
+
+
+            renderRecentTransactions(
+                recent,
+                transactions
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Transactions error:",
+                error
+            );
+
+
+            setEmpty(
+                table,
+                6,
+                "Unable to load transactions."
+            );
+        }
+    }
+
+
+    function renderTransactions(
+        table,
+        transactions
+    ) {
+
+        if (!table) {
+            return;
+        }
+
+
+        if (!transactions.length) {
+
+            setEmpty(
+                table,
+                6,
+                "No transactions found."
+            );
+
+            return;
+        }
+
+
+        table.innerHTML =
+            "";
+
+
+        transactions.forEach(
+            transaction => {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                const title =
+                    transaction.title ??
+                    "";
+
+
+                const description =
+                    transaction.description ??
+                    "";
+
+
+                const type =
+                    transaction.transaction_type ??
+                    transaction.transactionType ??
+                    "";
+
+
+                const payment =
+                    transaction.payment_method ??
+                    transaction.paymentMethod ??
+                    "";
+
+
+                const amount =
+                    transaction.amount ??
+                    0;
+
+
+                const date =
+                    transaction.transaction_date ??
+                    transaction.transactionDate ??
+                    transaction.created_at ??
+                    "";
+
+
+                row.innerHTML = `
+                    <td>${escapeHtml(title)}</td>
+                    <td>${escapeHtml(description)}</td>
+                    <td>${escapeHtml(type)}</td>
+                    <td>${escapeHtml(payment)}</td>
+                    <td>${money(amount)}</td>
+                    <td>${escapeHtml(formatDate(date))}</td>
+                `;
+
+
+                table.appendChild(
+                    row
+                );
+            }
+        );
+    }
+
+
+    function renderRecentTransactions(
+        target,
+        transactions
+    ) {
+
+        if (!target) {
+            return;
+        }
+
+
+        const recent =
+            transactions.slice(
+                0,
+                5
+            );
+
+
+        if (!recent.length) {
+
+            setEmpty(
+                target,
+                4,
+                "No transactions yet."
+            );
+
+            return;
+        }
+
+
+        target.innerHTML =
+            "";
+
+
+        recent.forEach(
+            transaction => {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+                    <td>
+                        ${escapeHtml(
+                            transaction.title ??
+                            ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            transaction.transaction_type ??
+                            transaction.transactionType ??
+                            ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${money(
+                            transaction.amount
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            formatDate(
+                                transaction.transaction_date ??
+                                transaction.transactionDate
+                            )
+                        )}
+                    </td>
+                `;
+
+
+                target.appendChild(
+                    row
+                );
+            }
+        );
+    }
+
+
+    /* =================================================
+       PRODUCTS
+    ================================================= */
+
+    async function loadProducts() {
+
+        const table =
+            document.getElementById(
+                "productsTable"
+            );
+
+
+        if (!selectedBusiness) {
+
+            setEmpty(
+                table,
+                6,
+                "Select a business to view products."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const data =
+                await apiRequest(
+                    `/api/products${businessQuery()}`
+                );
+
+
+            const products =
+                extractArray(
+                    data,
+                    [
+                        "products",
+                        "data"
+                    ]
+                );
+
+
+            renderProducts(
+                table,
+                products
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Products error:",
+                error
+            );
+
+
+            setEmpty(
+                table,
+                6,
+                "Unable to load products."
+            );
+        }
+    }
+
+
+    function renderProducts(
+        table,
+        products
+    ) {
+
+        if (!table) {
+            return;
+        }
+
+
+        if (!products.length) {
+
+            setEmpty(
+                table,
+                6,
+                "No products found."
+            );
+
+            return;
+        }
+
+
+        table.innerHTML =
+            "";
+
+
+        products.forEach(
+            product => {
+
+                const quantity =
+                    Number(
+                        product.quantity ||
+                        0
+                    );
+
+
+                const buying =
+                    Number(
+                        product.buying_price ||
+                        product.buyingPrice ||
+                        0
+                    );
+
+
+                const selling =
+                    Number(
+                        product.selling_price ||
+                        product.sellingPrice ||
+                        0
+                    );
+
+
+                const value =
+                    quantity *
+                    buying;
+
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+                    <td>
+                        ${escapeHtml(
+                            product.name ?? ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            product.description ?? ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${quantity}
+                    </td>
+
+                    <td>
+                        ${money(buying)}
+                    </td>
+
+                    <td>
+                        ${money(selling)}
+                    </td>
+
+                    <td>
+                        ${money(value)}
+                    </td>
+                `;
+
+
+                table.appendChild(
+                    row
+                );
+            }
+        );
+    }
+
+
+    /* =================================================
+       STOCK
+    ================================================= */
+
+    async function loadStock() {
+
+        const table =
+            document.getElementById(
+                "stockTable"
+            );
+
+
+        if (!selectedBusiness) {
+
+            setEmpty(
+                table,
+                4,
+                "Select a business to view stock."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const data =
+                await apiRequest(
+                    `/api/stock${businessQuery()}`
+                );
+
+
+            const movements =
+                extractArray(
+                    data,
+                    [
+                        "stock",
+                        "movements",
+                        "stock_movements",
+                        "data"
+                    ]
+                );
+
+
+            renderStock(
+                table,
+                movements
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Stock error:",
+                error
+            );
+
+
+            setEmpty(
+                table,
+                4,
+                "Unable to load stock movements."
+            );
+        }
+    }
+
+
+    function renderStock(
+        table,
+        movements
+    ) {
+
+        if (!table) {
+            return;
+        }
+
+
+        if (!movements.length) {
+
+            setEmpty(
+                table,
+                4,
+                "No stock movements found."
+            );
+
+            return;
+        }
+
+
+        table.innerHTML =
+            "";
+
+
+        movements.forEach(
+            movement => {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+                    <td>
+                        ${escapeHtml(
+                            movement.product_name ??
+                            movement.productName ??
+                            movement.product_id ??
+                            ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            movement.movement_type ??
+                            movement.movementType ??
+                            ""
+                        )}
+                    </td>
+
+                    <td>
+                        ${movement.quantity ?? 0}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            formatDate(
+                                movement.created_at ??
+                                movement.date
+                            )
+                        )}
+                    </td>
+                `;
+
+
+                table.appendChild(
+                    row
+                );
+            }
+        );
+    }
+
+
+    /* =================================================
+       LOW STOCK
+    ================================================= */
+
+    async function loadLowStock() {
+
+        const target =
+            document.getElementById(
+                "lowStockList"
+            );
+
+
+        if (!target ||
+            !selectedBusiness
+        ) {
+
+            return;
+        }
+
+
+        try {
+
+            const data =
+                await apiRequest(
+                    `/api/products/low-stock${businessQuery()}`
+                );
+
+
+            const products =
+                extractArray(
+                    data,
+                    [
+                        "products",
+                        "data"
+                    ]
+                );
+
+
+            if (!products.length) {
+
+                target.innerHTML =
+                    `
+                    <div class="empty-state">
+                        No low-stock products
+                    </div>
+                    `;
+
+                return;
+            }
+
+
+            target.innerHTML =
+                "";
+
+
+            products
+                .slice(0, 8)
+                .forEach(
+                    product => {
+
+                        const item =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        item.className =
+                            "stock-item";
+
+
+                        item.innerHTML = `
+                            <div>
+                                <strong>
+                                    ${escapeHtml(
+                                        product.name ?? ""
+                                    )}
+                                </strong>
+
+                                <span>
+                                    Qty:
+                                    ${product.quantity ?? 0}
+                                </span>
+                            </div>
+                        `;
+
+
+                        target.appendChild(
+                            item
+                        );
+                    }
+                );
+
+
+        } catch (error) {
+
+            console.error(
+                "Low stock error:",
+                error
+            );
+        }
+    }
+
+
+    /* =================================================
+       REPORTS
+    ================================================= */
+
+    async function loadReports() {
+
+        if (!selectedBusiness) {
+            return;
+        }
+
+
+        try {
+
+            const data =
+                await apiRequest(
+                    `/api/reports${businessQuery()}`
+                );
+
+
+            const income =
+                findValue(
+                    data,
+                    [
+                        "total_income",
+                        "income",
+                        "total_sales"
+                    ]
+                );
+
+
+            const expenses =
+                findValue(
+                    data,
+                    [
+                        "total_expenses",
+                        "expenses"
+                    ]
+                );
+
+
+            const profit =
+                findValue(
+                    data,
+                    [
+                        "profit",
+                        "total_profit",
+                        "net_profit"
+                    ]
+                );
+
+
+            const count =
+                findValue(
+                    data,
+                    [
+                        "transaction_count",
+                        "transactions_count",
+                        "total_transactions",
+                        "transactions"
+                    ]
+                );
+
+
+            document.getElementById(
+                "reportIncome"
+            ).textContent =
+                money(income);
+
+
+            document.getElementById(
+                "reportExpenses"
+            ).textContent =
+                money(expenses);
+
+
+            document.getElementById(
+                "reportProfit"
+            ).textContent =
+                money(profit);
+
+
+            document.getElementById(
+                "reportTransactions"
+            ).textContent =
+                Array.isArray(count)
+                    ? count.length
+                    : count;
+
+        } catch (error) {
+
+            console.error(
+                "Reports error:",
+                error
+            );
+
+
+            showToast(
+                error.message ||
+                "Unable to load reports.",
+                "error"
+            );
+        }
+    }
+
+
+    /* =================================================
+       REFRESH ALL BUSINESS DATA
+    ================================================= */
+
+    async function refreshBusinessData() {
+
+        if (!selectedBusiness) {
+
+            return;
+        }
+
+
+        await Promise.allSettled([
+            loadDashboard(),
+            loadTransactions(),
+            loadProducts(),
+            loadStock(),
+            loadLowStock(),
+            loadReports()
+        ]);
     }
 
 
     /* =================================================
        NAVIGATION
-       ================================================= */
+    ================================================= */
 
     const pageInfo = {
 
@@ -653,70 +2399,66 @@ const response =
         calculator: {
             title: "Calculator",
             subtitle:
-                "Calculate prices, profit and business figures."
+                "Calculate prices and business figures."
         }
     };
 
 
-    function showPage(pageName) {
+    function showPage(
+        pageName
+    ) {
 
-        const targetPage =
+        const target =
             document.getElementById(
                 `${pageName}Page`
             );
 
 
-        if (!targetPage) {
-
-            console.warn(
-                `Page "${pageName}" not found.`
-            );
-
+        if (!target) {
             return;
         }
 
 
-        pages.forEach(page => {
+        pages.forEach(
+            page => {
 
-            page.classList.remove(
-                "active"
-            );
-
-        });
-
-
-        navItems.forEach(item => {
-
-            item.classList.remove(
-                "active"
-            );
-
-        });
+                page.classList.remove(
+                    "active"
+                );
+            }
+        );
 
 
-        targetPage.classList.add(
+        navItems.forEach(
+            item => {
+
+                item.classList.remove(
+                    "active"
+                );
+            }
+        );
+
+
+        target.classList.add(
             "active"
         );
 
 
-        const activeNav =
+        const active =
             document.querySelector(
                 `.nav-item[data-page="${pageName}"]`
             );
 
 
-        if (activeNav) {
-
-            activeNav.classList.add(
-                "active"
-            );
-        }
+        active?.classList.add(
+            "active"
+        );
 
 
         if (pageTitle) {
 
             pageTitle.textContent =
-                pageInfo[pageName]?.title ??
+                pageInfo[pageName]?.title ||
                 "PesaTrack";
         }
 
@@ -724,101 +2466,113 @@ const response =
         if (pageSubtitle) {
 
             pageSubtitle.textContent =
-                pageInfo[pageName]?.subtitle ??
+                pageInfo[pageName]?.subtitle ||
                 "";
         }
 
 
-        if (sidebar) {
+        sidebar?.classList.remove(
+            "open"
+        );
 
-            sidebar.classList.remove(
-                "open"
-            );
+
+        if (pageName === "dashboard" &&
+            selectedBusiness
+        ) {
+
+            refreshBusinessData();
         }
 
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        if (pageName === "transactions" &&
+            selectedBusiness
+        ) {
+
+            loadTransactions();
+        }
+
+
+        if (pageName === "products" &&
+            selectedBusiness
+        ) {
+
+            loadProducts();
+        }
+
+
+        if (pageName === "stock" &&
+            selectedBusiness
+        ) {
+
+            loadStock();
+        }
+
+
+        if (pageName === "reports" &&
+            selectedBusiness
+        ) {
+
+            loadReports();
+        }
     }
 
 
-    /* Sidebar navigation */
+    navItems.forEach(
+        item => {
 
-    navItems.forEach(item => {
+            item.addEventListener(
+                "click",
+                event => {
 
-        item.addEventListener(
-            "click",
-            event => {
+                    event.preventDefault();
 
-                event.preventDefault();
-
-                const pageName =
-                    item.dataset.page;
-
-                if (pageName) {
-                    showPage(pageName);
+                    showPage(
+                        item.dataset.page
+                    );
                 }
-            }
-        );
-    });
+            );
+        }
+    );
 
 
-    /* Dashboard buttons / Quick Actions */
+    pageButtons.forEach(
+        button => {
 
-    pageButtons.forEach(button => {
+            button.addEventListener(
+                "click",
+                () => {
 
-        button.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-                const pageName =
-                    button.dataset.page;
-
-                if (pageName) {
-                    showPage(pageName);
+                    showPage(
+                        button.dataset.page
+                    );
                 }
-            }
-        );
-    });
+            );
+        }
+    );
 
 
     /* =================================================
        MOBILE MENU
-       ================================================= */
+    ================================================= */
 
-    if (mobileMenu) {
+    mobileMenu?.addEventListener(
+        "click",
+        () => {
 
-        mobileMenu.addEventListener(
-            "click",
-            () => {
-
-                if (!sidebar) {
-                    return;
-                }
-
-                sidebar.classList.toggle(
-                    "open"
-                );
-            }
-        );
-    }
+            sidebar?.classList.toggle(
+                "open"
+            );
+        }
+    );
 
 
     /* =================================================
-       DARK / LIGHT MODE
-       ================================================= */
+       THEME
+    ================================================= */
 
-    const savedTheme =
-        localStorage.getItem(
-            "pesatrack-theme"
-        );
-
-
-    function applyTheme(theme) {
+    function applyTheme(
+        theme
+    ) {
 
         document.body.classList.toggle(
             "dark",
@@ -826,80 +2580,63 @@ const response =
         );
 
 
-        if (themeToggle) {
-
-            const label =
-                themeToggle.querySelector(
-                    "span:last-child"
-                );
+        const label =
+            themeToggle?.querySelector(
+                "span:last-child"
+            );
 
 
-            if (label) {
+        if (label) {
 
-                label.textContent =
-                    theme === "dark"
-                        ? "Light Mode"
-                        : "Dark Mode";
-            }
+            label.textContent =
+                theme === "dark"
+                    ? "Light Mode"
+                    : "Dark Mode";
         }
     }
 
 
+    const savedTheme =
+        localStorage.getItem(
+            "pesatrack-theme"
+        ) || "light";
+
+
     applyTheme(
-        savedTheme === "dark"
-            ? "dark"
-            : "light"
+        savedTheme
     );
 
 
-    if (themeToggle) {
+    themeToggle?.addEventListener(
+        "click",
+        () => {
 
-        themeToggle.addEventListener(
-            "click",
-            () => {
-
-                const isDark =
-                    document.body.classList.contains(
-                        "dark"
-                    );
-
-
-                const newTheme =
-                    isDark
-                        ? "light"
-                        : "dark";
+            const next =
+                document.body.classList.contains(
+                    "dark"
+                )
+                    ? "light"
+                    : "dark";
 
 
-                applyTheme(
-                    newTheme
-                );
+            localStorage.setItem(
+                "pesatrack-theme",
+                next
+            );
 
 
-                localStorage.setItem(
-                    "pesatrack-theme",
-                    newTheme
-                );
+            applyTheme(
+                next
+            );
+        }
+    );
 
 
-                showToast(
-                    `${
-                        newTheme === "dark"
-                            ? "Dark"
-                            : "Light"
-                    } mode enabled.`,
-                    "success"
-                );
-            }
-        );
-    }
+    /* =================================================
+       LOGOUT
+    ================================================= */
 
-/* =================================================
-   LOGOUT
-   ================================================= */
-
-if (logoutBtn) {
-
-    logoutBtn.addEventListener(
+    logoutBtn?.addEventListener(
         "click",
         () => {
 
@@ -908,65 +2645,43 @@ if (logoutBtn) {
                     "Are you sure you want to logout?"
                 );
 
+
             if (!confirmed) {
                 return;
             }
 
 
-            /* Clear current business */
-            localStorage.removeItem(
-                "pesatrack-business"
-            );
+            clearSession();
 
+            businesses = [];
 
-            /* Clear authentication token */
-            localStorage.removeItem(
-                "pesatrack-token"
-            );
+            selectedBusiness =
+                null;
 
-
-            /* Clear user session */
-            localStorage.removeItem(
-                "pesatrack-user"
-            );
-
-
-            /*
-             * Do NOT redirect to login.html.
-             *
-             * login.html does not exist in the
-             * current PesaTrack frontend.
-             */
 
             showToast(
-                "You have been logged out successfully.",
+                "Logged out successfully.",
                 "success"
             );
 
 
-            /*
-             * Return dashboard to a clean state
-             * instead of opening a missing page.
-             */
-
-            setTimeout(() => {
-
-                window.location.href = "/";
-
-            }, 700);
-
+            setTimeout(
+                showLanding,
+                400
+            );
         }
     );
-}
+
 
     /* =================================================
        CALCULATOR
-       ================================================= */
+    ================================================= */
 
-    let calculatorExpression = "";
+    let calculatorExpression =
+        "";
 
 
-    function updateCalculatorDisplay() {
+    function updateCalculator() {
 
         if (!calculatorDisplay) {
             return;
@@ -974,11 +2689,12 @@ if (logoutBtn) {
 
 
         calculatorDisplay.value =
-            calculatorExpression || "0";
+            calculatorExpression ||
+            "0";
     }
 
 
-    function calculateExpression() {
+    function calculate() {
 
         if (!calculatorExpression) {
             return;
@@ -989,9 +2705,9 @@ if (logoutBtn) {
 
             const expression =
                 calculatorExpression
-                    .replace(/×/g, "*")
-                    .replace(/÷/g, "/")
-                    .replace(/−/g, "-");
+                    .replaceAll("×", "*")
+                    .replaceAll("÷", "/")
+                    .replaceAll("−", "-");
 
 
             if (
@@ -1013,12 +2729,13 @@ if (logoutBtn) {
 
 
             if (
-                typeof result !== "number" ||
+                typeof result !==
+                    "number" ||
                 !Number.isFinite(result)
             ) {
 
                 throw new Error(
-                    "Invalid calculation"
+                    "Invalid result"
                 );
             }
 
@@ -1031,17 +2748,16 @@ if (logoutBtn) {
                 );
 
 
-            updateCalculatorDisplay();
+            updateCalculator();
 
-        } catch (error) {
+        } catch {
 
-            calculatorExpression = "";
+            calculatorExpression =
+                "";
 
-            if (calculatorDisplay) {
 
-                calculatorDisplay.value =
-                    "Error";
-            }
+            calculatorDisplay.value =
+                "Error";
 
 
             showToast(
@@ -1051,14 +2767,14 @@ if (logoutBtn) {
 
 
             setTimeout(
-                updateCalculatorDisplay,
-                1200
+                updateCalculator,
+                1000
             );
         }
     }
 
 
-    function handleCalculatorInput(
+    function calculatorInput(
         value
     ) {
 
@@ -1069,9 +2785,10 @@ if (logoutBtn) {
 
         if (value === "C") {
 
-            calculatorExpression = "";
+            calculatorExpression =
+                "";
 
-            updateCalculatorDisplay();
+            updateCalculator();
 
             return;
         }
@@ -1085,7 +2802,7 @@ if (logoutBtn) {
                     -1
                 );
 
-            updateCalculatorDisplay();
+            updateCalculator();
 
             return;
         }
@@ -1093,7 +2810,7 @@ if (logoutBtn) {
 
         if (value === "=") {
 
-            calculateExpression();
+            calculate();
 
             return;
         }
@@ -1107,54 +2824,67 @@ if (logoutBtn) {
                 );
 
 
-            const currentNumber =
-                parts[parts.length - 1];
+            const current =
+                parts[
+                    parts.length - 1
+                ];
 
 
             if (
-                currentNumber.includes(".")
+                current.includes(".")
             ) {
+
                 return;
             }
 
 
             calculatorExpression +=
-                currentNumber === ""
+                current === ""
                     ? "0."
                     : ".";
 
 
-            updateCalculatorDisplay();
+            updateCalculator();
 
             return;
         }
 
 
         if (
-            ["+", "-", "×", "÷", "−"]
-                .includes(value)
+            [
+                "+",
+                "-",
+                "×",
+                "÷",
+                "−"
+            ].includes(value)
         ) {
 
-            if (!calculatorExpression) {
-
-                if (
-                    value === "×" ||
-                    value === "÷"
-                ) {
-                    return;
-                }
-            }
-
-
-            const lastCharacter =
+            const last =
                 calculatorExpression.slice(
                     -1
                 );
 
 
             if (
-                ["+", "-", "×", "÷"]
-                    .includes(lastCharacter)
+                !calculatorExpression &&
+                (
+                    value === "×" ||
+                    value === "÷"
+                )
+            ) {
+
+                return;
+            }
+
+
+            if (
+                [
+                    "+",
+                    "-",
+                    "×",
+                    "÷"
+                ].includes(last)
             ) {
 
                 calculatorExpression =
@@ -1171,223 +2901,289 @@ if (logoutBtn) {
                     : value;
 
 
-            updateCalculatorDisplay();
+            updateCalculator();
 
             return;
         }
 
 
-        if (/^[0-9]$/.test(value)) {
+        if (
+            /^[0-9]$/.test(value)
+        ) {
 
-            calculatorExpression += value;
+            calculatorExpression +=
+                value;
 
-            updateCalculatorDisplay();
+
+            updateCalculator();
         }
     }
 
 
-    calculatorButtons.forEach(button => {
+    calculatorButtons.forEach(
+        button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                handleCalculatorInput(
-                    button.dataset.value
-                );
-            }
-        );
-    });
+                    calculatorInput(
+                        button.dataset.value
+                    );
+                }
+            );
+        }
+    );
 
-
-    /* =================================================
-       KEYBOARD CALCULATOR
-       ================================================= */
 
     document.addEventListener(
         "keydown",
         event => {
 
-            const activeElement =
-                document.activeElement;
-
             const tag =
-                activeElement?.tagName;
+                document.activeElement
+                    ?.tagName;
 
 
             if (
                 tag === "INPUT" &&
-                activeElement !==
+                document.activeElement !==
                     calculatorDisplay
             ) {
-                return;
-            }
-
-
-            const key =
-                event.key;
-
-
-            if (/^[0-9]$/.test(key)) {
-
-                handleCalculatorInput(key);
 
                 return;
             }
 
 
             if (
-                key === "+" ||
-                key === "-"
+                /^[0-9]$/.test(
+                    event.key
+                )
             ) {
 
-                handleCalculatorInput(key);
-
-                return;
-            }
-
-
-            if (key === "*") {
-
-                handleCalculatorInput("×");
-
-                return;
-            }
-
-
-            if (key === "/") {
-
-                handleCalculatorInput("÷");
-
-                return;
-            }
-
-
-            if (key === ".") {
-
-                handleCalculatorInput(".");
+                calculatorInput(
+                    event.key
+                );
 
                 return;
             }
 
 
             if (
-                key === "Enter" ||
-                key === "="
+                event.key === "+" ||
+                event.key === "-"
+            ) {
+
+                calculatorInput(
+                    event.key
+                );
+
+                return;
+            }
+
+
+            if (event.key === "*") {
+
+                calculatorInput("×");
+
+                return;
+            }
+
+
+            if (event.key === "/") {
+
+                calculatorInput("÷");
+
+                return;
+            }
+
+
+            if (event.key === ".") {
+
+                calculatorInput(".");
+
+                return;
+            }
+
+
+            if (
+                event.key === "Enter" ||
+                event.key === "="
             ) {
 
                 event.preventDefault();
 
-                handleCalculatorInput("=");
+                calculatorInput("=");
 
                 return;
             }
 
 
             if (
-                key === "Backspace" ||
-                key === "Delete"
+                event.key === "Backspace" ||
+                event.key === "Delete"
             ) {
 
-                handleCalculatorInput("⌫");
+                calculatorInput("⌫");
 
                 return;
             }
 
 
-            if (key === "Escape") {
+            if (
+                event.key === "Escape"
+            ) {
 
-                handleCalculatorInput("C");
+                calculatorInput("C");
             }
         }
     );
 
 
     /* =================================================
-       REFRESH DASHBOARD
-       ================================================= */
+       REFRESH
+    ================================================= */
 
-    if (refreshDashboard) {
+    refreshDashboard?.addEventListener(
+        "click",
+        async () => {
 
-        refreshDashboard.addEventListener(
-            "click",
-            async () => {
-
-                refreshDashboard.disabled =
-                    true;
-
-                try {
-
-                    await fetchBusinesses();
-
-                    await refreshBusinessData();
-
-                    showToast(
-                        "Dashboard refreshed.",
-                        "success"
-                    );
-
-                } finally {
-
-                    refreshDashboard.disabled =
-                        false;
-                }
-            }
-        );
-    }
+            refreshDashboard.disabled =
+                true;
 
 
-    /* =================================================
-       REPORT
-       ================================================= */
+            try {
 
-    if (generateReport) {
+                await refreshBusinessData();
 
-        generateReport.addEventListener(
-            "click",
-            () => {
 
                 showToast(
-                    "Report generation is ready for backend data.",
+                    "Dashboard refreshed.",
                     "success"
                 );
+
+            } finally {
+
+                refreshDashboard.disabled =
+                    false;
             }
-        );
-    }
+        }
+    );
 
 
-    /* =================================================
-       INITIAL PAGE
-       ================================================= */
+    generateReport?.addEventListener(
+        "click",
+        async () => {
 
-    const activeNav =
-        document.querySelector(
-            ".nav-item.active"
-        );
+            await loadReports();
 
-
-    showPage(
-        activeNav?.dataset.page ||
-        "dashboard"
+            showToast(
+                "Report refreshed.",
+                "success"
+            );
+        }
     );
 
 
     /* =================================================
-       INITIAL BUSINESS LOAD
-       ================================================= */
+       UTILITY
+    ================================================= */
 
-    fetchBusinesses();
+    function setEmpty(
+        target,
+        colspan,
+        message
+    ) {
+
+        if (!target) {
+            return;
+        }
+
+
+        target.innerHTML =
+            `
+            <tr>
+                <td
+                    colspan="${colspan}"
+                    class="empty-state"
+                >
+                    ${escapeHtml(message)}
+                </td>
+            </tr>
+            `;
+    }
+
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(
+            value ?? ""
+        )
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+
+    function formatDate(
+        value
+    ) {
+
+        if (!value) {
+            return "";
+        }
+
+
+        const date =
+            new Date(value);
+
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return String(value);
+        }
+
+
+        return date.toLocaleDateString(
+            "en-TZ",
+            {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            }
+        );
+    }
 
 
     /* =================================================
-       INITIAL CALCULATOR
-       ================================================= */
+       INITIALIZATION
+    ================================================= */
 
-    updateCalculatorDisplay();
+    updateCalculator();
+
+
+    if (getToken()) {
+
+        showApp();
+
+        fetchBusinesses();
+
+    } else {
+
+        showLanding();
+    }
 
 
     console.log(
-        "PesaTrack frontend initialized successfully."
+        "PesaTrack initialized."
     );
 
 });
